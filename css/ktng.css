@@ -1,0 +1,893 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+
+:root {
+	--blue: #2e84f5;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+a {
+	text-decoration: none;
+	display: block;
+	&:visited {
+		color: inherit;
+	}
+	&:active {
+		color: inherit;
+	}
+}
+
+ul {
+	list-style: none;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.innerbox {
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
+/* 헤더(로고,내비) */
+header {
+	position: relative;
+	border-bottom: 1px solid #ddd;
+	& > .innerbox {
+		height: 100px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		@media (max-width: 1460px) {
+			padding: 0 20px;
+		}
+		@media (max-width: 768px) {
+			height: 65px;
+			padding: 0 10px;
+			/* 로고 */
+			& > .logo {
+				& > img {
+					height: 26px;
+				}
+			}
+		}
+		/* 내비 */
+		& > .nav {
+			display: flex;
+			align-items: center;
+			height: 100%;
+			/* overflow-x: hidden; */
+			@media (max-width: 1460px) {
+				display: none;
+			}
+			& > li {
+				padding: 0 22px;
+				position: relative;
+				height: 100%;
+				& > a {
+					position: relative;
+					height: 100%;
+					display: flex;
+					align-items: center;
+					font-size: 20px;
+					color: #111;
+					font-weight: 500;
+					&.e-library {
+						display: flex;
+						gap: 8px;
+						color: var(--blue);
+					}
+					&::after {
+						position: absolute;
+						content: "";
+						display: block;
+						bottom: 0px;
+						left: 0px;
+						width: 0%;
+						height: 3px;
+						background-color: var(--blue);
+						transition: 0.2s;
+					}
+					&:hover::after {
+						width: 100%;
+					}
+				}
+				/* 드롭다운 */
+				& > ul {
+					display: none;
+					position: absolute;
+					flex-direction: column;
+					align-items: center;
+					top: 99px;
+					left: 50%;
+					transform: translateX(-50%);
+					width: 100%;
+					padding: 30px 0 50px;
+					z-index: 10;
+					gap: 12px;
+					& > li > a {
+						color: #666;
+						&:hover {
+							text-decoration: underline;
+							color: #111;
+							font-weight: 500;
+						}
+					}
+				}
+				&:not(:first-child)::before {
+					position: absolute;
+					content: "";
+					display: block;
+					left: 0;
+					top: 50%;
+					width: 4px;
+					height: 11px;
+					transform: translateY(-50%);
+					background: url(https://scholarship.ktngtogether.com/resource/www/images/gnbDots.svg)
+						no-repeat;
+				}
+			}
+			&:hover > li > ul {
+				display: flex;
+			}
+			&::before {
+				pointer-events: none;
+				display: none;
+				position: absolute;
+				content: "";
+				top: 101px;
+				left: 0;
+				width: 100%;
+				height: 280px;
+				background-color: #fff;
+				box-shadow: 0px 8px 8px #0001;
+				z-index: 3;
+			}
+			&:hover::before {
+				display: block;
+			}
+		}
+		/* 우상단 컨텍스트 */
+		& > .context {
+			display: flex;
+			gap: 20px;
+			align-items: center;
+			@media (max-width: 768px) {
+				gap: 8px;
+			}
+			& > ul {
+				display: flex;
+				align-items: center;
+				--gap: 38px;
+				--gap2: 15px;
+				gap: var(--gap);
+				@media (max-width: 768px) {
+					gap: var(--gap2);
+				}
+				& > li {
+					position: relative;
+					> a {
+						font-size: 15px;
+						color: #666;
+					}
+					&:first-child > a {
+						color: #0000;
+						user-select: none;
+						width: 14px;
+						height: 13px;
+						background: url(https://scholarship.ktngtogether.com/resource/www/images/iconHome2.svg)
+							no-repeat;
+					}
+					&:not(:first-child)::before {
+						position: absolute;
+						content: "";
+						display: block;
+						width: 1px;
+						height: 13px;
+						background-color: #d9d9d9;
+						top: 50%;
+						transform: translateY(-50%);
+						left: calc(-1 * (var(--gap) / 2));
+					}
+					@media (max-width: 768px) {
+						& > a {
+							font-size: 11px;
+						}
+						&:first-child > a {
+							display: none;
+						}
+						&:nth-child(2)::before {
+							display: none;
+						}
+						&:last-child::before {
+							left: calc(-1 * (var(--gap2) / 2));
+						}
+					}
+				}
+			}
+			& > select {
+				height: 28px;
+				font-size: 12px;
+				color: #666;
+				font-weight: 500;
+				padding: 0 24px 0 11px;
+				border-radius: 50px;
+				border: 2px solid #e8e8e8;
+				/* appearance: none; */
+				&:active {
+					border-color: #000;
+				}
+				@media (max-width: 768px) {
+					font-size: 9px;
+					width: 52px;
+					height: 17px;
+					padding: 0 15px 0 9px;
+				}
+			}
+			& > .search {
+				width: 18px;
+				height: 18px;
+				background: url(https://scholarship.ktngtogether.com/resource/www/images/iconSearch.svg)
+					no-repeat;
+				@media (max-width: 768px) {
+					width: 26px;
+					height: 26px;
+					border: 1px solid #ddd;
+					background-size: 65%;
+					background-position: center;
+				}
+			}
+			& > .menu {
+				width: 20px;
+				height: 19px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: baseline;
+				padding: 2px 0;
+				& > span {
+					position: relative;
+					height: 3px;
+					width: 100%;
+					background-color: #88d0be;
+					transition: 0.15s ease;
+					left: 0px;
+					&:nth-child(2) {
+						width: 75%;
+					}
+				}
+				&:hover > span {
+					left: 4px;
+					&:nth-child(2) {
+						left: -2px;
+					}
+				}
+				@media (max-width: 768px) {
+					width: 26px;
+					height: 26px;
+					border: 1px solid #ddd;
+					padding: 6px 0;
+					& > * {
+						scale: 65%;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* 메인(큰사진,3단바,2x2그리드) */
+main {
+	padding: 40px 0;
+	@media (max-width: 768px) {
+		padding: 0 0 20px 0;
+	}
+	& > .innerbox {
+		display: flex;
+		gap: 20px;
+		@media (max-width: 1460px) {
+			padding: 0 20px;
+		}
+		@media (max-width: 1240px) {
+			flex-direction: column;
+		}
+		@media (max-width: 768px) {
+			padding: 0;
+		}
+		/* 큰 사진 */
+		& > .first {
+			position: relative;
+			height: 740px;
+			border-radius: 10px;
+			overflow: hidden;
+			background-image: url(../img/1699918374623);
+			background-size: cover;
+			background-position: center;
+			width: 57%;
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			/* 높이 500으로 조정 */
+			@media (max-width: 1240px) {
+				width: 100%;
+			}
+			/* 내부여백 감소,보더 라디우스 제거 */
+			@media (max-width: 768px) {
+				height: 500px;
+				padding: 10px;
+				border-radius: 0px;
+			}
+			/* 소개문구 */
+			& > .top {
+				padding: 40px 40px 0 40px;
+				& > .text {
+					text-align: left;
+					& > * {
+						display: block;
+					}
+					& > h3 {
+						font-size: 24px;
+						color: #333;
+					}
+					& > h2 {
+						font-size: 58px;
+					}
+					& > p {
+						font-size: 20px;
+						color: #333;
+						margin-top: 5px;
+					}
+					/* 글귀 가운데 */
+					@media (max-width: 1024px) {
+						text-align: center;
+					}
+					/* 폰트축소 */
+					@media (max-width: 768px) {
+						& > h3 {
+							font-size: 16px;
+						}
+						& > h2 {
+							font-size: 35px;
+						}
+						& > p {
+							font-size: 14px;
+						}
+					}
+				}
+				& > .progress {
+					display: flex;
+					width: 100%;
+					margin-top: 24px;
+					justify-content: start;
+					align-items: center;
+					gap: 30px;
+					& > p {
+						font-size: 20px;
+						color: #8b8b8b;
+						font-weight: 600;
+						& > span {
+							color: var(--blue);
+						}
+					}
+					& > .bar {
+						width: 200px;
+						height: 2px;
+						background-color: #fff;
+						position: relative;
+						overflow-x: hidden;
+						&::after {
+							content: "";
+							background-color: #666;
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 0%;
+							height: 2px;
+							animation-name: bar_progress;
+							animation-duration: 1.75s;
+							animation-iteration-count: infinite;
+						}
+					}
+					& > .buttons {
+						display: flex;
+						align-items: center;
+						& > * {
+							width: 20px;
+							height: 24px;
+							background-position: center;
+							background-repeat: no-repeat;
+						}
+						& > .prev {
+							background-image: url(https://scholarship.ktngtogether.com/resource/www/images/arrowPrev2.svg);
+						}
+						& > .pause {
+							background-image: url(https://scholarship.ktngtogether.com/resource/www/images/iconPause.svg);
+						}
+						& > .next {
+							background-image: url(https://scholarship.ktngtogether.com/resource/www/images/arrowNext2.svg);
+						}
+					}
+					/* 슬라이더 게이지 먼저 */
+					@media (max-width: 1240px) {
+						justify-content: center;
+					}
+					/* 폰트축소, 게이지 소형화 */
+					@media (max-width: 768px) {
+						gap: 17px;
+						& > p {
+							font-size: 15px;
+						}
+						& > .bar {
+							width: 120px;
+						}
+						& > .buttons {
+							scale: 0.8;
+						}
+					}
+				}
+			}
+			/* 공지사항 */
+			& > .bottom {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 24px;
+				background: #fff;
+				border-radius: 10px;
+				border: 1px solid #eee;
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+				gap: 32px;
+				& > h2 {
+					font-size: 20px;
+					width: 96px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				& > .content {
+					flex: 1;
+					display: flex;
+					justify-content: space-between;
+					& > .title {
+						width: 70%;
+						font-size: 18px;
+						color: #666;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						&:hover {
+							text-decoration: underline;
+							color: #111;
+							font-weight: 500;
+						}
+					}
+					& > .date {
+						/* width: 30%; */
+						min-width: 62px;
+						font-size: 16px;
+						color: #999;
+						/* white-space: nowrap; */
+					}
+				}
+				& > .buttons {
+					display: flex;
+					height: 32px;
+					flex-direction: column;
+					justify-content: space-between;
+					& > a {
+						width: 16px;
+						height: 15px;
+						&:first-child {
+							background: url(https://scholarship.ktngtogether.com/resource/www/images/arrowUp.svg)
+								center no-repeat;
+						}
+						&:last-child {
+							background: url(https://scholarship.ktngtogether.com/resource/www/images/arrowDown.svg)
+								center no-repeat;
+						}
+					}
+				}
+				@media (max-width: 768px) {
+					padding: 10px;
+					gap: 10px;
+					& > h2 {
+						font-size: 13px;
+						width: 64px;
+					}
+					& > .content {
+						& > .title {
+							font-size: 12px;
+						}
+						& > .date {
+							font-size: 12px;
+						}
+					}
+				}
+			}
+		}
+		/* 탭&그리드 */
+		& > .second {
+			width: 43%;
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			/* 탭 */
+			& > .tabs {
+				/* height: 50px; */
+				border-radius: 50px;
+				background-color: #f2f2f2;
+				display: flex;
+				& > a {
+					height: 50px;
+					flex: 1;
+					font-size: 20px;
+					color: #333;
+					border-radius: 50px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-weight: 400;
+					&.strong {
+						color: #fff;
+						background-color: var(--blue);
+						font-weight: 500;
+						box-shadow: 4px 8px 12px 0px rgba(46, 132, 245, 0.25);
+					}
+				}
+			}
+			/* 그리드 */
+			& > .grid {
+				height: 100%;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 10px;
+				& > a {
+					position: relative;
+					border-radius: 10px;
+					background-color: #eaf3fe;
+					padding: 40px 30px;
+					transition: 0.2s ease;
+					& > h2 {
+						font-size: 26px;
+						color: #111;
+					}
+					& > p {
+						margin-top: 15px;
+						font-size: 18px;
+						color: #333;
+						line-height: 1.4;
+						letter-spacing: -1px;
+					}
+					& > img {
+						position: absolute;
+						bottom: 20px;
+						right: 20px;
+					}
+					&:hover {
+						box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+							rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+					}
+				}
+			}
+			@media (max-width: 1240px) {
+				margin-top: 40px;
+				width: 100%;
+				& > .grid > a {
+					height: 330px;
+				}
+			}
+			@media (max-width: 768px) {
+				padding: 10px;
+				& > .tabs {
+					& > a {
+						height: 33px;
+						font-size: 13px;
+					}
+				}
+				& > .grid {
+					gap: 6px;
+					grid-template-columns: 1fr;
+					& > a {
+						height: initial;
+						padding: 20px;
+						& > h2 {
+							font-size: 16px;
+						}
+						& > p {
+							margin-top: 10px;
+							font-size: 12px;
+						}
+						& > img {
+							width: 60px;
+							height: 60px;
+							object-fit: contain;
+							bottom: 0;
+							top: 50%;
+							transform: translateY(-50%);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* 우측하단fix */
+aside {
+	position: fixed;
+	bottom: 30px;
+	right: 20px;
+	display: flex;
+	flex-direction: column;
+	height: 180px;
+	z-index: 9;
+	justify-content: space-between;
+	& > div {
+		width: 200px;
+		height: 70px;
+		border-radius: 100px;
+		font-size: 18px;
+		color: #111;
+		font-weight: bold;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		box-shadow: 4px 8px 12px 0px rgba(156, 156, 156, 0.25);
+		padding: 0 30px;
+		user-select: none;
+		cursor: pointer;
+		&.lib {
+			background-color: #d5f4ef;
+			background-image: url(https://scholarship.ktngtogether.com/resource/www/images/logo.png);
+			background-repeat: no-repeat;
+			background-position: top 3px center;
+			background-size: auto 28px;
+			border: 1px solid #ade9de;
+			& > div {
+				position: relative;
+				top: 16px;
+			}
+		}
+		&.chatbot {
+			background: #dff8ff;
+			border: 1px solid #bae4f4;
+			text-align: left;
+			&::after {
+				content: "";
+				position: absolute;
+				right: 10px;
+				bottom: 2px;
+				width: 40px;
+				height: 6px;
+				border-radius: 50%;
+				background: rgba(0, 0, 0, 0.6);
+				filter: blur(10px);
+				animation: levitate_shadow 2s ease-in-out infinite;
+			}
+		}
+		& > div {
+			height: 30px;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column-reverse;
+			align-items: center;
+			padding-bottom: 4px;
+			position: relative;
+			counter-reset: spancounter;
+			& > div {
+				position: relative;
+				transition: 0.2s;
+				bottom: 0;
+				opacity: 1;
+			}
+			& > span {
+				position: absolute;
+				counter-increment: spancounter;
+				display: block;
+				top: -60px;
+				transition: 0.2s;
+				opacity: 0;
+				&:nth-child(2) {
+					left: 0;
+					transition-delay: 0s;
+				}
+				&:nth-child(3) {
+					left: 20px;
+					transition-delay: 0.03s;
+				}
+				&:nth-child(4) {
+					left: 40px;
+					transition-delay: 0.06s;
+				}
+				&:nth-child(5) {
+					left: 60px;
+					transition-delay: 0.1s;
+				}
+			}
+		}
+		&:hover > div {
+			/* 원래글자 */
+			& > div {
+				bottom: -60px;
+				opacity: 0;
+			}
+			/* 바 로 가 기 */
+			& > span {
+				top: 0px;
+				opacity: 1;
+			}
+		}
+	}
+	& > img {
+		position: absolute;
+		width: 88px;
+		height: 87px;
+		bottom: 8px;
+		right: 0px;
+		animation: levitate 2s ease-in-out infinite;
+		pointer-events: none;
+	}
+}
+
+@keyframes levitate {
+	0% {
+		bottom: 8px;
+	}
+	50% {
+		bottom: 20px;
+	}
+	100% {
+		bottom: 8px;
+	}
+}
+
+@keyframes levitate_shadow {
+	0%,
+	100% {
+		width: 40px;
+		height: 6px;
+	}
+	50% {
+		width: 20px;
+		height: 4px;
+	}
+}
+/* 하단 */
+footer {
+	padding: 30px 0;
+	border-top: 1px solid #ddd;
+	font-family: "Nanum Gothic", sans-serif;
+	& > .innerbox {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		& > .copyright {
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+			text-align: left;
+			& > ul {
+				width: 100%;
+				display: flex;
+				gap: 57px;
+				& > li {
+					position: relative;
+				}
+				& > li:not(:first-child)::before {
+					background-color: #ddd;
+					width: 1px;
+					height: 13px;
+					top: 50%;
+					left: calc(-1 * (57px / 2));
+					transform: translateY(-50%);
+					content: "";
+					display: block;
+					position: absolute;
+				}
+				& > li > a {
+					font-size: 15px;
+					color: #111;
+					font-weight: 700;
+				}
+			}
+			& > p {
+				margin-top: 14px;
+				color: #595959;
+				font-size: 15px;
+			}
+		}
+		& > .link {
+			display: flex;
+			gap: 15px;
+			align-items: center;
+			& > a {
+				width: 36px;
+				height: 36px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 100%;
+				background-color: #c2c2c2;
+				position: relative;
+				&::before {
+					content: "";
+					display: block;
+					border-radius: 100%;
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: 0;
+					transform-origin: 50% 50%;
+					transition: 0.15s ease;
+					transform: scale(0);
+					background-color: var(--blue);
+					z-index: 1;
+				}
+				&:hover::before {
+					transform: scale(1);
+				}
+				& > img {
+					z-index: 2;
+				}
+			}
+			& > select {
+				width: 210px;
+				height: 40px;
+				border: 1px solid #ddd;
+				padding: 0 20px;
+				font-size: 15px;
+				color: #555;
+				background: #fff;
+			}
+		}
+		@media (max-width: 1460px) {
+			padding: 0 20px;
+		}
+		/* 1240에서 세로역순배치, 가운데 정렬 */
+		@media (max-width: 1240px) {
+			flex-direction: column-reverse;
+			& > .copyright {
+				margin-top: 36px;
+				align-items: center;
+				text-align: center;
+				& > ul {
+					justify-content: center;
+				}
+				& > p {
+					margin-top: 30px;
+				}
+			}
+		}
+		/* 768에서 축소 */
+		@media (max-width: 768px) {
+			& > .copyright {
+				scale: 0.8;
+				margin-top: 18px;
+			}
+			& > .link {
+				scale: 0.7;
+			}
+		}
+	}
+}
+
+@keyframes bar_progress {
+	0% {
+		width: 0%;
+	}
+	25% {
+		width: 0%;
+	}
+	100% {
+		width: 125%;
+	}
+}
